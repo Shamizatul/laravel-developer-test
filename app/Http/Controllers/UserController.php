@@ -52,7 +52,11 @@ class UserController extends Controller
             $data['password'] = Hash::make($data['password']);
         }
 
-        $user->update($data);
+        $updateSuccess = $user->update($data);
+
+        if (!$updateSuccess) {
+            return response()->json(['error' => 'Update User Failed'], 404);
+        } 
 
         return response()->json($user, 200);
     }
