@@ -3,12 +3,12 @@
         <h1>User Maintenance Application</h1>
         <div class="components-container">
             <AddUser @add-user="addUser" />
-            <UserList :users="filteredUsers" @filter="setFilter" />
+            <UserList :users="users" @filter="setFilter" />
         </div>
     </div>
 </template>
 
-<script>
+<script setup>
 import { ref, onMounted } from "vue";
 import api from "@/utils/axios";
 import AddUser from "./components/AddUser.vue";
@@ -32,14 +32,6 @@ const getApiAllUsers = async () => {
 onMounted(() => {
     getApiAllUsers();
 });
-
-export default {
-    name: "App",
-    components: {
-        AddUser,
-        UserList,
-    },
-};
 </script>
 
 <style>

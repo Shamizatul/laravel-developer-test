@@ -2,11 +2,13 @@
     <div class="user-list">
         <h2>User List</h2>
         <input v-model="filter" type="text" placeholder="Filter by name" @input="applyFilter" />
-        <ul>
+        <ol>
             <li v-for="user in filteredUsers" :key="user.id">
-                {{ user.name }}
+                {{ user.name }} |
+                {{ user.email }} |
+                {{ user.phone }}
             </li>
-        </ul>
+        </ol>
     </div>
 </template>
 
@@ -64,12 +66,12 @@ input:focus {
     outline: none;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+ol {
+    margin: 5px 0;
 }
 
 li {
     margin: 5px 0;
+    text-align: left;
 }
 </style>
