@@ -34,15 +34,15 @@ function validatePhone() {
 
 // Function to submit user data
 async function submitUser() {
-    // Regular expression for validating an email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!(emailRegex.test(email.value.trim()))) {    
-        alert("Invalid email address. Please try again. (eg: xxx@xxx.com)");
-        return; // Stop the function if validation fails
-    }
-    
     if (name.value.trim() && email.value.trim() && phone.value.trim() && password.value.trim()) {
+        // Validating an email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!(emailRegex.test(email.value.trim()))) {    
+            alert("Invalid email address. Please try again. (eg: xxx@xxx.com)");
+            return; // Stop the function if validation fails
+        }
+
         const userData = {
             name: name.value,
             email: email.value,
@@ -51,7 +51,7 @@ async function submitUser() {
         };
 
         try {
-            // Send POST request to backend (Laravel) with Content-Type: application/json header
+            // Send POST request to backend with Content-Type: application/json header
             const response = await api.post("/users/add", userData, {
                 headers: {
                     'Content-Type': 'application/json',
