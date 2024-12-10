@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 
+use Carbon\Carbon;
 class UserController extends Controller
 {
     public function index()
@@ -20,10 +21,17 @@ class UserController extends Controller
     {
         Log::info('Store method hit:', $request->all());
 
+        // Validate the incoming request
         $data = $request->validated();
-        $data['password'] = Hash::make($data['password']);
 
-        $user = User::create($data);
+        $user = User::create([
+            'name'          => $data['name'],
+            'email'         => $data['email'],
+            'phone'         => $data['phone'],
+            'password'      => Hash::make($data['password']), // Hash the password before saving
+            'created_at'    => Carbon::now(),
+            'updated_at'    => Carbon::now(),
+        ]);
 
         return response()->json($user, 201);
     }
