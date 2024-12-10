@@ -12,6 +12,10 @@
 <script setup>
 import { ref } from "vue";
 import api from "@/utils/axios";
+import { defineEmits } from "vue";
+
+// Define the event to emit
+const emit = defineEmits(["refresh-user-list"]); 
 
 // Define reactive data
 const name = ref("");
@@ -61,6 +65,9 @@ async function submitUser() {
                 phone.value = "";
                 password.value = "";
                 alert("User added successfully!");
+
+                // Emit event to refresh user list
+                emit("refresh-user-list");
             }
         } catch (error) {
             console.error("There was an error adding the user:", error);

@@ -2,7 +2,7 @@
     <div id="app" class="container">
         <h1>User Maintenance Application</h1>
         <div class="components-container">
-            <AddUser @add-user="addUser" />
+            <AddUser @add-user="addUser" @refresh-user-list="getApiAllUsers" />
             <UserList :users="users" @filter="setFilter" />
         </div>
     </div>

@@ -15,7 +15,6 @@
 <script setup>
 import { ref, computed, watch } from 'vue';
 
-// eslint-disable-next-line
 const props = defineProps({
     users: {
         type: Array,
